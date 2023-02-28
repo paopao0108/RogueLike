@@ -59,7 +59,9 @@ public class MapManager : MonoBehaviour
         wallCount = wallCount >= maxWallCount ? maxWallCount : wallCount; // 限制最大数量
         // 2. 根据数量创建障碍物
         initItems(wall, wallCount);
-        initItems(food, );
+        initItems(food, 3);
+        initItems(suda, 3);
+
 
         // 创建敌人
     }

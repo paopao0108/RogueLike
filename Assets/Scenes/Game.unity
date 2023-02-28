@@ -261,8 +261,10 @@ MonoBehaviour:
   - {fileID: 2309533608699500441, guid: 2967d1f5365ac0944b4cf7d47da1ee3d, type: 3}
   - {fileID: 8058415201339369920, guid: c60ddfbcda151254896accdc49b152c1, type: 3}
   - {fileID: 4489284385545894559, guid: f00674d0aa6f14748b1f9ee257337c3a, type: 3}
-  food: []
-  suda: []
+  food:
+  - {fileID: 1459237230154988406, guid: 67bcf77f78e62fa40a271ce77416cc34, type: 3}
+  suda:
+  - {fileID: 9083720673752343989, guid: f0321c22bca27794382ee84703d8b956, type: 3}
   posList: []
   exitPos: {x: 0, y: 0, z: 0}
   playerStartPos: {x: 1, y: 1, z: 0}
@@ -293,3 +295,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aff4c35e81c8c314d96a8ab493b1c91d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  level: 6
