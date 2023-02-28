@@ -6,7 +6,8 @@ public class MapManager : MonoBehaviour
 {
     private int minWallCount = 4;
     private int maxWallCount = 15;
-
+    private int minFoodCount = 1;
+    private int maxFoodCount = 5;
 
     public int rows = 10;
     public int cols = 10;
@@ -56,9 +57,9 @@ public class MapManager : MonoBehaviour
         int wallCount = gameManager.level * 2 + 1; // 数量与等级的关系
         wallCount = wallCount <= minWallCount ? minWallCount : wallCount; // 限制最小数量
         wallCount = wallCount >= maxWallCount ? maxWallCount : wallCount; // 限制最大数量
-        
-        int randomCount = Random.Range(minWallCount, maxWallCount);
-        initItems(wall, randomCount);
+        // 2. 根据数量创建障碍物
+        initItems(wall, wallCount);
+        initItems(food, );
 
         // 创建敌人
     }
@@ -75,6 +76,15 @@ public class MapManager : MonoBehaviour
         GameObject.Instantiate(ground[groundIndex], pos, Quaternion.identity);
     }
 
+    // 获取当前关卡的障碍物或食物的数量
+    public int GetItemsCount(int level, int max, int min, bool isWall)
+    {
+        int count = isWall ? level * 2 + 1 : level / 2; // 数量与等级的关系
+        count = count <= min ? min : count; // 限制最小数量
+        count = count >= max ? max : count; // 限制最大数量
+        return count;
+    }
+
     // 初始化障碍物、食物
     public void initItems(GameObject[] items, int count)
     {
@@ -88,4 +98,6 @@ public class MapManager : MonoBehaviour
         }
         
     }
+
+
 }
