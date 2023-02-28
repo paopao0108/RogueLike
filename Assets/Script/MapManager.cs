@@ -16,42 +16,38 @@ public class MapManager : MonoBehaviour
     public GameObject[] wall; // 障碍物：地面上的墙
     public GameObject[] food;
     public GameObject[] suda;
+    public GameObject[] enemy;
+    public GameObject[] exit; // 待简化：后续可以无需定义为一个数组
+    public GameObject player;
     public List<Vector3> posList = new List<Vector3>(); // 地面上的所有位置信息
     public Vector3 exitPos;
     public Vector3 playerStartPos = new Vector3(1, 1, 0);
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         initMap();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void initMap()
     {
         // 初始化退出的位置
         exitPos.x = rows - 2;
         exitPos.y = cols - 2;
         exitPos.z = 0;
-        
+        // 创建退出
+        InitBackground(exitPos, exit); // 待简化
+
         for (int i = 0; i < rows; i++)
             for (int j = 0; j < cols; j++)
                 if (i == 0 || i == rows - 1 || j == 0 || j == cols - 1)
-                    initOutwall(new Vector3(i, j, 0)); // 创建外围墙: i = 0 和 rows-1
+                    InitBackground(new Vector3(i, j, 0), outwall); // 创建外围墙: i = 0 和 rows-1
                 else
                 {
-                    initGround(new Vector3(i, j, 0)); // 创建地面: 除外围墙以外的位置
+                    InitBackground(new Vector3(i, j, 0), ground); // 创建地面: 除外围墙以外的位置
                     if (i != exitPos.x && j != exitPos.y && i != playerStartPos.x && j != playerStartPos.y) posList.Add(new Vector3(i, j, 0)); // 将地面位置存储下来
                 }
 
 
         // 创建障碍物、食物
-
         // 1. 当前等级下产生的障碍物数量
         GameManager gameManager =  GetComponent<GameManager>();
         int wallCount = gameManager.level * 2 + 1; // 数量与等级的关系
@@ -62,20 +58,18 @@ public class MapManager : MonoBehaviour
         initItems(food, 3);
         initItems(suda, 3);
 
-
         // 创建敌人
+        int enemyCount = gameManager.level * 2 - 2;
+        initItems(enemy, enemyCount);
+
+
+        // 创建玩家
+        GameObject.Instantiate(player, new Vector3(1, 1, 0), Quaternion.identity);
     }
 
-    public void initOutwall(Vector3 pos)
-    {
-        int wallIndex = Random.Range(0, outwall.Length);
-        GameObject.Instantiate(outwall[wallIndex], pos, Quaternion.identity);
-    }
-
-    public void initGround(Vector3 pos)
-    {
-        int groundIndex = Random.Range(0, ground.Length);
-        GameObject.Instantiate(ground[groundIndex], pos, Quaternion.identity);
+    public void InitBackground(Vector3 pos, GameObject[] gameObj) {
+        int index = Random.Range(0, gameObj.Length);
+        GameObject.Instantiate(gameObj[index], pos, Quaternion.identity);
     }
 
     // 获取当前关卡的障碍物或食物的数量
@@ -87,7 +81,7 @@ public class MapManager : MonoBehaviour
         return count;
     }
 
-    // 初始化障碍物、食物
+    // 初始化障碍物、食物、敌人
     public void initItems(GameObject[] items, int count)
     {
         for (int i = 0; i < count; i++)
@@ -98,8 +92,6 @@ public class MapManager : MonoBehaviour
             posList.RemoveAt(randomPosIndex); // 删除已使用的位置
             GameObject.Instantiate(items[itemIndex], randomPos, Quaternion.identity);
         }
-        
     }
-
 
 }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731704, g: 0.13414727, b: 0.121078536, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -265,6 +265,12 @@ MonoBehaviour:
   - {fileID: 1459237230154988406, guid: 67bcf77f78e62fa40a271ce77416cc34, type: 3}
   suda:
   - {fileID: 9083720673752343989, guid: f0321c22bca27794382ee84703d8b956, type: 3}
+  enemy:
+  - {fileID: 7627530985940789787, guid: 3148d5fad738ceb40a83983b3bd9ae30, type: 3}
+  - {fileID: 785665963260938252, guid: cf18ef4af865de140bb4b75b9409ab93, type: 3}
+  exit:
+  - {fileID: 3692150584553492274, guid: fc43ce049c079964b9d1d9d58939ffc9, type: 3}
+  player: {fileID: 6155842827225207296, guid: edad13efb2796604b8270f4d8305ce91, type: 3}
   posList: []
   exitPos: {x: 0, y: 0, z: 0}
   playerStartPos: {x: 1, y: 1, z: 0}
@@ -295,4 +301,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aff4c35e81c8c314d96a8ab493b1c91d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 6
+  level: 2
